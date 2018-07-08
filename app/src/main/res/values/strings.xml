@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Checkup</string>
+    <string name="last_db_check">Last data balance check: %s</string>
+</resources>
