@@ -11,5 +11,5 @@ fun getLastDbCheckTime(context: Context) =
             if (it == 0L) null else Date(it)
         }
 
-fun storeLastDbCheckTime(context: Context, time: Date) =
+fun setLastDbCheckTime(context: Context, time: Date) =
     PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(KEY_LAST_DB_CHECK_TIME, time.time).apply()

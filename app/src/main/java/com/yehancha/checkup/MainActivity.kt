@@ -17,9 +17,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        println("AlarmTest: MainActivity.onCreate")
         getSendPermissionAndContinue()
-        showLastDBCheckedTime()
+        showVersion()
     }
 
     private fun getSendPermissionAndContinue() = if (!isSendSmsPermissionGranted()) {
@@ -30,6 +29,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun isSendSmsPermissionGranted() =
             ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED
+
+    private fun showVersion() {
+        version.text = packageManager.getPackageInfo(packageName, 0).versionName;
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showLastDBCheckedTime()
+    }
 
     private fun showLastDBCheckedTime() = getLastDbCheckTime(this).let {
         message.text = getString(R.string.last_db_check, if (it != null) FORMAT.format(it) else "None")

@@ -8,7 +8,6 @@ import android.content.Intent
 import java.util.*
 
 fun scheduleDBChecker(context: Context) {
-    println("AlarmTest: setAlarm")
     val intent = Intent(context, AlarmReceiver::class.java)
     val alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
     val manager = (context.getSystemService(Context.ALARM_SERVICE) as AlarmManager)
@@ -22,7 +21,6 @@ fun getAlarmStartTime() = Calendar.getInstance().apply {
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        println("AlarmTest: AlarmReceiver.onReceive")
         runDBChecker(context)
     }
 }
